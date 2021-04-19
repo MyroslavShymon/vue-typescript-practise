@@ -115,15 +115,35 @@
         >
       </li>
     </ul>
+    <div>
+      <input type="text" name="" id="" v-model.number="firstNumber" />
+      <h2>{{ firstNumber }}</h2>
+      <button @click="increment()">Increment</button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-@Component
+@Component({
+  data() {
+    return {
+      firstNumber: 0,
+    };
+  },
+})
 export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
+  // @Prop({ type: Number, default: 0 })
+  private firstNumber!: number;
+  @Prop({ type: String, default: "" })
+  private msg!: string;
+
+  // private firstNumber!: number;
+
+  increment(): number {
+    return this.firstNumber++;
+  }
 }
 </script>
 
